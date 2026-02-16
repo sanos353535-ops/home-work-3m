@@ -1,0 +1,28 @@
+import flet as ft
+
+def main(page: ft.Page):
+    page.title = 'Приветствие'
+    history_column = ft.Column(controls=[])
+
+    history_text = ft.Text(color='red')
+
+
+    def delete_last(e):
+        if len(history_column.controls) > 0:
+            history_column.controls.pop()
+            history_text.value = ''
+        else:
+            history_text.value = 'История пусто!'
+
+
+        page.update()
+
+
+    page.add(
+        ft.Text('История приветствие', size=20, weight='bold'),
+        history_column,
+        history_text,
+        ft.FilledButton('Удалить последнее', on_click=delete_last)
+    )
+
+ft.app(main)
